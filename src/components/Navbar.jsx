@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Image from './Image';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -6,7 +7,7 @@ const Navbar = () => {
   return (
     <div className="w-full h-16 md:h-20 flex items-center justify-between">
       <div className="flex items-center gap-4 text-2xl font-bold">
-        <img src="/favicon.svg" className="size-8" alt="Logo" />
+        <Image path="favicon.svg" alt="Logo" w={32} h={32} />
         <span>mponblog</span>
       </div>
 
