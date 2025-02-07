@@ -1,5 +1,7 @@
 import { Link } from 'react-router';
 
+import MainCategories from '../components/MainCategories';
+
 const Home = () => {
   return (
     <div className="mt-4 flex flex-col gap-4">
@@ -11,10 +13,10 @@ const Home = () => {
 
       <div className="flex items-center justify-between">
         <div className="">
-          <h1 className="text-gray-800 text-2xl md:text-5xl lg:text-6xl font-bold">
+          <h1 className="text-2xl font-bold text-gray-800 md:text-5xl lg:text-6xl">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit.
           </h1>
-          <p className="mt-8 text-md md:text-xl">
+          <p className="text-md mt-8 md:text-xl">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti
             minima quasi ut fuga similique.
           </p>
@@ -24,7 +26,7 @@ const Home = () => {
             viewBox="0 0 200 200"
             width="200"
             height="200"
-            className="text-lg tracking-widest animate-spin animatedButton"
+            className="animatedButton animate-spin text-lg tracking-widest"
           >
             <path
               id="circlePath"
@@ -40,7 +42,7 @@ const Home = () => {
               </textPath>
             </text>
           </svg>
-          <button className="absolute top-0 left-0 right-0 bottom-0 m-auto size-20 bg-blue-800 rounded-full flex items-center justify-center">
+          <button className="absolute top-0 right-0 bottom-0 left-0 m-auto flex size-20 items-center justify-center rounded-full bg-blue-800">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -56,6 +58,8 @@ const Home = () => {
           </button>
         </Link>
       </div>
+
+      <MainCategories />
     </div>
   );
 };
