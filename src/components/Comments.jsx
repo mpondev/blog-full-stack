@@ -7,7 +7,7 @@ const Comments = () => {
       <div className="flex w-full items-center justify-between gap-8">
         <textarea
           placeholder="Write a comment..."
-          className="w-full rounded-xl p-4"
+          className="w-full rounded-xl p-4 bg-slate-50"
         />
         <button className="rounded-xl bg-blue-800 px-4 py-3 font-medium text-white">
           Send
