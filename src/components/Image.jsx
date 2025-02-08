@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { IKImage } from 'imagekitio-react';
 
 const Image = ({ alt, className, path, w, h }) => {
@@ -15,10 +17,18 @@ const Image = ({ alt, className, path, w, h }) => {
         {
           height: h,
           width: w,
-        }
+        },
       ]}
     />
   );
+};
+
+Image.propTypes = {
+  alt: PropTypes.string,
+  className: PropTypes.string,
+  path: PropTypes.string.isRequired,
+  w: PropTypes.string,
+  h: PropTypes.string,
 };
 
 export default Image;

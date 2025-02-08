@@ -13,6 +13,7 @@
     "@clerk/clerk-react": "^5.22.11",
     "@tailwindcss/vite": "^4.0.3",
     "imagekitio-react": "^4.2.0",
+    "prop-types": "^15.8.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router": "^7.1.5",
