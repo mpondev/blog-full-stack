@@ -5,7 +5,7 @@ import { ClerkProvider } from '@clerk/clerk-react';
 
 import Home from './routes/Home.jsx';
 import Login from './routes/Login.jsx';
-import PostList from './routes/PostList.jsx';
+import PostListPage from './routes/PostListPage.jsx';
 import Register from './routes/Register.jsx';
 import SinglePost from './routes/SinglePost.jsx';
 import Write from './routes/Write.jsx';
@@ -27,7 +27,7 @@ createRoot(document.getElementById('root')).render(
         <Routes>
           <Route element={<MainLayout />}>
             <Route index element={<Home />} />
-            <Route path="/posts" element={<PostList />} />
+            <Route path="/posts" element={<PostListPage />} />
             <Route path="/:posts" element={<SinglePost />} />
             <Route path="/write" element={<Write />} />
             <Route path="/login" element={<Login />} />
