@@ -11,8 +11,10 @@
   "author": "Mario Ponce",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.3",
     "dotenv": "^16.4.7",
     "express": "^5.0.1",
-    "mongoose": "^8.10.0"
+    "mongoose": "^8.10.0",
+    "svix": "^1.45.1"
   }
 }
