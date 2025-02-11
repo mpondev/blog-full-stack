@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { useAuth, useUser } from '@clerk/clerk-react';
 import 'react-quill-new/dist/quill.snow.css';
@@ -7,9 +7,26 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+import Upload from '../components/Upload';
+
 const Write = () => {
   const { isLoaded, isSignedIn } = useUser();
   const [value, setValue] = useState('');
+  const [cover, setCover] = useState('');
+  const [img, setImg] = useState('');
+  const [video, setVideo] = useState('');
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    img && setValue(prev => prev + `<p><image src="${img.url}"/></p>`);
+  }, [img]);
+
+  useEffect(() => {
+    video &&
+      setValue(
+        prev => prev + `<p><iframe class="ql-video" src="${video.url}"/></p>`
+      );
+  }, [video]);
 
   const navigate = useNavigate();
 
@@ -42,6 +59,7 @@ const Write = () => {
     const formData = new FormData(evt.target);
 
     const data = {
+      img: cover.filePath || '',
       title: formData.get('title'),
       category: formData.get('category'),
       desc: formData.get('desc'),
@@ -57,9 +75,11 @@ const Write = () => {
       <h1 className="text-xl font-light">Create a New Post</h1>
 
       <form onSubmit={handleSubmit} className="mb-6 flex flex-1 flex-col gap-6">
-        <button className="w-max rounded-xl bg-white p-2 text-sm text-gray-500 shadow-md">
-          Add a cover image
-        </button>
+        <Upload type={'image'} setData={setCover} setProgress={setProgress}>
+          <button className="w-max rounded-xl bg-white p-2 text-sm text-gray-500 shadow-md">
+            Add a cover image
+          </button>
+        </Upload>
 
         <input
           className="bg-transparent text-4xl font-semibold outline-none"
@@ -92,19 +112,31 @@ const Write = () => {
           className="rounded-xl bg-white p-4 shadow-md"
         ></textarea>
 
-        <ReactQuill
-          theme="snow"
-          className="flex-1 rounded-xl bg-white shadow-md"
-          value={value}
-          onChange={setValue}
-        />
+        <div className="flex flex-1">
+          <div className="mr-2 flex flex-col gap-2">
+            <Upload type="image" setData={setImg} setProgress={setProgress}>
+              🏞️
+            </Upload>
+            <Upload type="video" setData={setVideo} setProgress={setProgress}>
+              📹
+            </Upload>
+          </div>
+          <ReactQuill
+            theme="snow"
+            className="flex-1 rounded-xl bg-white shadow-md"
+            value={value}
+            onChange={setValue}
+            readOnly={0 < progress && progress < 100}
+          />
+        </div>
 
         <button
-          disabled={mutation.isPending}
+          disabled={mutation.isPending || (0 < progress && progress < 100)}
           className="mt-4 w-36 rounded-xl bg-blue-800 p-2 font-medium text-white disabled:cursor-not-allowed disabled:bg-blue-400"
         >
           {mutation.isPending ? 'Loading...' : 'Send'}
         </button>
+        {'Progress: ' + progress + '%'}
         {mutation.isError && <span>{mutation.error.message}</span>}
       </form>
     </div>
