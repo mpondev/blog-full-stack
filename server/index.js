@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
+import { clerkMiddleware } from '@clerk/express';
 import connectDB from './lib/connectDB.js';
 
 import userRouter from './routes/user.route.js';
@@ -10,6 +11,7 @@ import webHookRouter from './routes/webhook.route.js';
 const app = express();
 const PORT = 3000;
 
+app.use(clerkMiddleware());
 app.use('/webhooks', webHookRouter);
 app.use(express.json());
 
@@ -19,7 +21,7 @@ app.use('/comments', commentRouter);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).send({
+  res.status(500).json({
     message: err.message || 'Something went wrong!',
     stack: err.stack,
     status: err.status || 500,

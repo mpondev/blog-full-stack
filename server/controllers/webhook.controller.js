@@ -16,7 +16,7 @@ export const clerkWebHook = async (req, res) => {
   try {
     evt = wh.verify(payload, headers);
   } catch (err) {
-    res.status(401).send('Webhook verification failed!');
+    res.status(401).json({ message: 'Webhook verification failed!' });
   }
 
   if (evt.type === 'user.created') {
@@ -39,5 +39,5 @@ export const clerkWebHook = async (req, res) => {
   //   await Comment.deleteMany({ user: deletedUser._id });
   // }
 
-  return res.status(200).send('Webhook received!');
+  return res.status(200).json({ message: 'Webhook received!' });
 };
