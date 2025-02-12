@@ -33,7 +33,7 @@ createRoot(document.getElementById('root')).render(
             <Route element={<MainLayout />}>
               <Route index element={<Home />} />
               <Route path="/posts" element={<PostListPage />} />
-              <Route path="/:posts" element={<SinglePost />} />
+              <Route path="/:slug" element={<SinglePost />} />
               <Route path="/write" element={<Write />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
