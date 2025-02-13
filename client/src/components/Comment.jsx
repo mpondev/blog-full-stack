@@ -1,27 +1,33 @@
+import PropTypes from 'prop-types';
+import { format } from 'timeago.js';
+
 import Image from './Image';
 
-const Comment = () => {
+const Comment = ({ comment }) => {
   return (
     <div className="mb-8 rounded-xl bg-slate-50 p-4">
       <div className="flex items-center gap-4">
-        <Image
-          path="userImg.jpeg"
-          className="h-10 w-10 rounded-full object-cover"
-          w="40"
-        />
-        <span className="font-medium">John Doe</span>
-        <span className="text-sm text-gray-500">2 days ago</span>
+        {comment.user.img && (
+          <Image
+            path={comment.user.img}
+            className="h-10 w-10 rounded-full object-cover"
+            w="40"
+          />
+        )}
+        <span className="font-medium">{comment.user.username}</span>
+        <span className="text-sm text-gray-500">
+          {format(comment.cratedAt)}
+        </span>
       </div>
       <div className="mt-4">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-          laboriosam autem praesentium ex, dignissimos, perspiciatis incidunt
-          voluptatem consequuntur saepe nisi tempora id architecto repellendus
-          quis! Fugit nulla perferendis porro quos.
-        </p>
+        <p>{comment.desc}</p>
       </div>
     </div>
   );
+};
+
+Comment.propTypes = {
+  comment: PropTypes.object.isRequired,
 };
 
 export default Comment;
