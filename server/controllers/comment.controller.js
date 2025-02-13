@@ -1,3 +1,4 @@
+import { set } from 'mongoose';
 import Comment from '../models/comment.model.js';
 import User from '../models/user.model.js';
 
@@ -27,7 +28,9 @@ export const addComment = async (req, res) => {
 
   const savedComment = await newComment.save();
 
-  res.status(201).json(savedComment);
+  setTimeout(() => {
+    res.status(201).json(savedComment);
+  }, 3000);
 };
 
 export const deleteComment = async (req, res) => {
