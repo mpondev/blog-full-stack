@@ -1,14 +1,24 @@
-import { Link, useSearchParams } from 'react-router';
+import { useSearchParams } from 'react-router';
 
 import Search from './Search';
 
 const SideMenu = () => {
   const [searchParams, setSerachParams] = useSearchParams();
+
   const handleFilterChange = evt => {
     if (searchParams.get('sort') !== evt.target.value) {
       setSerachParams({
         ...Object.fromEntries(searchParams.entries()),
         sort: evt.target.value,
+      });
+    }
+  };
+
+  const handleCategoryChange = category => {
+    if (searchParams.get('cat') !== category) {
+      setSerachParams({
+        ...Object.fromEntries(searchParams.entries()),
+        cat: category,
       });
     }
   };
@@ -64,24 +74,42 @@ const SideMenu = () => {
 
       <h1 className="mt-8 mb-4 text-sm font-medium">Categories</h1>
       <div className="flex flex-col gap-2 text-sm">
-        <Link to="/posts" className="underline">
+        <span
+          className="underline cursor-pointer"
+          onClick={() => handleCategoryChange('general')}
+        >
           All
-        </Link>
-        <Link to="/posts?cat=web-design" className="underline">
+        </span>
+        <span
+          className="underline cursor-pointer"
+          onClick={() => handleCategoryChange('web-design')}
+        >
           Web Design
-        </Link>
-        <Link to="/posts?cat=development" className="underline">
+        </span>
+        <span
+          className="underline cursor-pointer"
+          onClick={() => handleCategoryChange('development')}
+        >
           Development
-        </Link>
-        <Link to="/posts?cat=databases" className="underline">
+        </span>
+        <span
+          className="underline cursor-pointer"
+          onClick={() => handleCategoryChange('databases')}
+        >
           Databases
-        </Link>
-        <Link to="/posts?cat=seo" className="underline">
+        </span>
+        <span
+          className="underline cursor-pointer"
+          onClick={() => handleCategoryChange('seo')}
+        >
           Search Engines
-        </Link>
-        <Link to="/posts?cat=marketing" className="underline">
+        </span>
+        <span
+          className="underline cursor-pointer"
+          onClick={() => handleCategoryChange('marketiing')}
+        >
           Marketing
-        </Link>
+        </span>
       </div>
     </div>
   );
