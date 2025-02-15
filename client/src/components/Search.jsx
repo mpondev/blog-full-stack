@@ -1,4 +1,21 @@
+import { useLocation, useNavigate, useSearchParams } from 'react-router';
+
 const Search = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const handleKeyPress = evt => {
+    if (evt.key === 'Enter') {
+      const query = evt.target.value;
+      if (location.pathname === '/posts') {
+        setSearchParams({ ...Object.fromEntries(searchParams), search: query });
+      } else {
+        navigate(`/posts?search=${query}`);
+      }
+    }
+  };
+
   return (
     <div className="flex items-center gap-2 rounded-full bg-gray-100 p-2">
       <svg
@@ -17,6 +34,7 @@ const Search = () => {
         type="text"
         placeholder="Search a post..."
         className="bg-transparent"
+        onKeyDown={handleKeyPress}
       />
     </div>
   );
