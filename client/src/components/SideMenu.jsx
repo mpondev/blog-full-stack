@@ -1,8 +1,18 @@
-import { Link } from 'react-router';
+import { Link, useSearchParams } from 'react-router';
 
 import Search from './Search';
 
 const SideMenu = () => {
+  const [searchParams, setSerachParams] = useSearchParams();
+  const handleFilterChange = evt => {
+    if (searchParams.get('sort') !== evt.target.value) {
+      setSerachParams({
+        ...Object.fromEntries(searchParams.entries()),
+        sort: evt.target.value,
+      });
+    }
+  };
+
   return (
     <div className="px-4 h-max sticky top-8">
       <h1 className="mb-4 text-sm font-medium">Search</h1>
@@ -14,6 +24,7 @@ const SideMenu = () => {
           <input
             type="radio"
             name="sort"
+            onChange={handleFilterChange}
             value="newest"
             className="size-4 cursor-pointer appearance-none rounded-sm border-[1.5px] border-blue-800 bg-white checked:bg-blue-800"
           />
@@ -23,6 +34,7 @@ const SideMenu = () => {
           <input
             type="radio"
             name="sort"
+            onChange={handleFilterChange}
             value="popular"
             className="size-4 cursor-pointer appearance-none rounded-sm border-[1.5px] border-blue-800 bg-white checked:bg-blue-800"
           />
@@ -32,6 +44,7 @@ const SideMenu = () => {
           <input
             type="radio"
             name="sort"
+            onChange={handleFilterChange}
             value="trending"
             className="size-4 cursor-pointer appearance-none rounded-sm border-[1.5px] border-blue-800 bg-white checked:bg-blue-800"
           />
@@ -41,6 +54,7 @@ const SideMenu = () => {
           <input
             type="radio"
             name="sort"
+            onChange={handleFilterChange}
             value="oldest"
             className="size-4 cursor-pointer appearance-none rounded-sm border-[1.5px] border-blue-800 bg-white checked:bg-blue-800"
           />
