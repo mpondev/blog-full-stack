@@ -31,7 +31,7 @@ const FeaturedPosts = () => {
       <div className="flex w-full flex-col gap-4 lg:w-1/2">
         {posts[0].img && (
           <Image
-            path="posts[0].img"
+            path={posts[0].img}
             className="rounded-3xl object-cover"
             w="895"
           />
@@ -53,15 +53,15 @@ const FeaturedPosts = () => {
       <div className="flex w-full flex-col gap-4 lg:w-1/2">
         {posts[1] && (
           <div className="flex justify-between gap-4 lg:h-1/3">
-            <div className="w-1/3 aspect-video">
-              {posts[1].img && (
+            {posts[1].img && (
+              <div className="w-1/3 aspect-video">
                 <Image
                   path={posts[1].img}
                   className="h-full w-full rounded-3xl object-cover"
                   w="298"
                 />
-              )}
-            </div>
+              </div>
+            )}
 
             <div className="w-2/3">
               <div className="mb-4 flex items-center gap-4 text-sm lg:text-base">
@@ -83,15 +83,15 @@ const FeaturedPosts = () => {
 
         {posts[2] && (
           <div className="flex justify-between gap-4 lg:h-1/3">
-            <div className="w-1/3 aspect-video">
-              {posts[2].img && (
+            {posts[2].img && (
+              <div className="w-1/3 aspect-video">
                 <Image
                   path={posts[2].img}
                   className="h-full w-full rounded-3xl object-cover"
                   w="298"
                 />
-              )}
-            </div>
+              </div>
+            )}
 
             <div className="w-2/3">
               <div className="mb-4 flex items-center gap-4 text-sm lg:text-base">
@@ -113,15 +113,15 @@ const FeaturedPosts = () => {
 
         {posts[3] && (
           <div className="flex justify-between gap-4 lg:h-1/3">
-            <div className="w-1/3 aspect-video">
-              {posts[3].img && (
+            {posts[3].img && (
+              <div className="w-1/3 aspect-video">
                 <Image
                   path={posts[3].img}
                   className="h-full w-full rounded-3xl object-cover"
                   w="298"
                 />
-              )}
-            </div>
+              </div>
+            )}
 
             <div className="w-2/3">
               <div className="mb-4 flex items-center gap-4 text-sm lg:text-base">

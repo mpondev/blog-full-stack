@@ -1,12 +1,12 @@
 import { Link, useParams } from 'react-router';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { format } from 'timeago.js';
 
+import Comments from '../components/Comments';
 import Image from '../components/Image';
 import PostMenuActions from '../components/PostMenuActions';
 import Search from '../components/Search';
-import Comments from '../components/Comments';
-import { format } from 'timeago.js';
 
 const fetchPost = async slug => {
   const res = await axios.get(`${import.meta.env.VITE_API_URL}/posts/${slug}`);

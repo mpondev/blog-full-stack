@@ -7,7 +7,6 @@ import PostListItem from './PostListItem';
 
 const fetchPosts = async (pageParam, searchParams) => {
   const searchParamsObj = Object.fromEntries([...searchParams]);
-  console.log(searchParamsObj);
 
   const res = await axios.get(`${import.meta.env.VITE_API_URL}/posts`, {
     params: { page: pageParam, limit: 10, ...searchParamsObj },
@@ -17,6 +16,7 @@ const fetchPosts = async (pageParam, searchParams) => {
 
 const PostList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+
   const {
     data,
     error,
@@ -33,15 +33,11 @@ const PostList = () => {
       lastPage.hasMore ? pages.length + 1 : undefined,
   });
 
-  console.log(data);
-
   if (isFetching) return 'Loading...';
 
   if (error) return 'Something went wrong';
 
   const allPosts = data?.pages?.flatMap(page => page.posts) || [];
-
-  console.log(data);
 
   return (
     <InfiniteScroll

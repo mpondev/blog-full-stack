@@ -106,7 +106,7 @@ const SideMenu = () => {
         </span>
         <span
           className="underline cursor-pointer"
-          onClick={() => handleCategoryChange('marketiing')}
+          onClick={() => handleCategoryChange('marketing')}
         >
           Marketing
         </span>

@@ -30,7 +30,7 @@ const MainCategories = () => {
           Databases
         </Link>
         <Link
-          to="/posts?cat=search-engines"
+          to="/posts?cat=seo"
           className="rounded-full px-4 py-2 hover:bg-blue-50"
         >
           Search Engines
